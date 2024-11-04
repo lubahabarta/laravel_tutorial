@@ -10,9 +10,13 @@
 </head>
 
 <body> 
-    <nav>navbar</nav>
-    <main>{{ $slot }}</main>
+
+    <x-header />
+
+    <main class="pt-14">{{ $slot }}</main>
+
     <footer>footer</footer>
+
 </body>
 
 </html>

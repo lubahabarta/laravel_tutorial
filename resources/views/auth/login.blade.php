@@ -11,7 +11,7 @@
 
 <body>
     <main class="min-h-screen flex justify-center items-center bg-slate-700 px-4">
-        <form action="{{ route('login') }}" method="post" class="flex-1 max-w-md bg-white rounded-xl p-4">
+        <form action="{{ route('login') }}" method="post" class="flex-1 flex flex-col max-w-md bg-white rounded-xl p-4">
             @csrf
 
             <h2 class="text-2xl font-bold">Login</h2>
@@ -58,7 +58,10 @@
             <button type="submit" class="w-full text-center font-semibold bg-slate-700 text-white p-1 px-2 mt-4">Log
                 in</button>
 
+            <a href="{{ route('register') }}" class="text-center text-sm mt-2">Don't have an account? Register here</a>
+
         </form>
+    
     </main>
 
     <footer>footer</footer>

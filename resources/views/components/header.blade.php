@@ -1,5 +1,5 @@
 <header class="fixed top-0 left-0 w-full">
-    <nav class="h-14 flex items-center justify-between bg-black bg-opacity-10 px-4">
+    <nav class="h-14 flex items-center justify-between bg-black bg-opacity-10 backdrop-blur-md px-8">
         <ul class="flex items-center gap-4">
             <li><a href="{{ route('home') }}">home</a></li>
             <li><a href="{{ route('products.index') }}">products</a></li>

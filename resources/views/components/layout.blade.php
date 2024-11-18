@@ -13,7 +13,7 @@
 
     <x-header />
 
-    <main class="pt-14">{{ $slot }}</main>
+    <main class="pt-20 px-8">{{ $slot }}</main>
 
     <footer>footer</footer>
 

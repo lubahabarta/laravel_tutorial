@@ -9,13 +9,18 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body> 
+<body class="bg-gray-300 dark:bg-gray-950 text-gray-950 dark:text-gray-300">
 
     <x-header />
 
-    <main class="pt-20 px-8">{{ $slot }}</main>
+    <div class="min-h-dvh flex flex-col items-center p-4 pt-14">
 
-    <footer>footer</footer>
+        <main class="flex-1 w-full max-w-screen-lg py-8">{{ $slot }}</main>
+
+        <footer class="w-full max-w-screen-lg bg-gray-300 dark:bg-gray-900 border border-slate-500 rounded-lg px-4 py-2">footer
+        </footer>
+
+    </div>
 
 </body>
 

@@ -3,7 +3,7 @@
         <div class="h-14 w-full max-w-screen-lg flex items-center justify-between">
 
             <ul class="flex items-center gap-4">
-                <li><a href="{{ route('home') }}">home</a></li>
+                <li><a href="{{ route('products.index') }}">products</a></li>
             </ul>
 
             <ul class="flex items-center gap-4">

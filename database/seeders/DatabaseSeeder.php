@@ -13,12 +13,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // User::factory(1)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'first_name' => 'Luba',
+            'last_name' => 'Habarta',
+            'username' => 'lubahabarta',
+            'email' => 'habarta@deepvision.cz',
+            'password' => bcrypt('test'),
+        ]);
+
+        User::factory()->create([
+            'first_name' => 'Test',
+            'last_name' => 'Test',
+            'username' => 'test',
+            'email' => 'test@test.test',
+            'password' => bcrypt('test'),
+        ]);
 
         $this->call([
             ProductSeeder::class,

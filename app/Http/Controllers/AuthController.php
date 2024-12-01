@@ -21,6 +21,11 @@ class AuthController extends Controller
         ]);
 
         $user = User::create($fields);
+        if (!$user instanceof User) {
+            return back()->withErrors([
+                'registration_failed' => 'Registration failed. Try again later.',
+            ]);
+        }
 
         return redirect('/login');
     }
@@ -37,7 +42,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'login_failed' => 'The provided credentials do not match our records.'
+            'login_failed' => 'The provided credentials do not match our records.',
         ]);
     }
 

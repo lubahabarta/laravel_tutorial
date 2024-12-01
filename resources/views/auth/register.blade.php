@@ -11,7 +11,8 @@
 
 <body>
     <main class="min-h-screen flex justify-center items-center bg-slate-700 px-4">
-        <form action="{{ route('register') }}" method="post" class="flex-1 flex flex-col max-w-md bg-white rounded-xl p-4">
+        <form action="{{ route('register') }}" method="post"
+            class="flex-1 flex flex-col max-w-md bg-white rounded-xl p-4">
             @csrf
 
             <h2 class="text-2xl font-bold">Registration</h2>
@@ -46,7 +47,7 @@
 
             <div class="flex flex-col mt-2">
                 <label for="username">username</label>
-                <input type="text" name="username"  value="{{ old('username') }}"
+                <input type="text" name="username" value="{{ old('username') }}"
                     class="border @error('username') border-red-500 @else border-slate-700 @enderror">
                 @error('username')
                     <span class="text-red-500 text-xs">{{ $message }}</span>
@@ -67,6 +68,10 @@
                 <input type="password" name="password_confirmation"
                     class="border @error('password') border-red-500 @else border-slate-700 @enderror">
             </div>
+
+            @error('registration_failed')
+                <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+            @enderror
 
             <button type="submit"
                 class="w-full text-center font-semibold bg-slate-700 text-white p-1 px-2 mt-4">Register</button>

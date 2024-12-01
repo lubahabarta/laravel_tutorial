@@ -16,6 +16,10 @@
 
             <h2 class="text-2xl font-bold">Login</h2>
 
+            @if (session('session_timed_out'))
+                <x-flash type="info" :message="session('session_timed_out')" />
+            @endif
+
             <div class="flex flex-col mt-2">
                 <label for="username">username</label>
                 <input type="text" name="username" value="{{ old('username') }}"

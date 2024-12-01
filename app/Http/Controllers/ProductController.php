@@ -60,15 +60,26 @@ class ProductController extends Controller
             return back()->withErrors(['product_creation_failed' => 'Product creation failed.']);
         }
 
-        return redirect('/dashboard')->with('product_creation_success', 'Product created successfully.');
+        return redirect('/dashboard')->with([
+            'product_creation_success' => 'Product created successfully.',
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(String $slug)
     {
-        //
+        $product = Product::where('slug', $slug)->first();
+        if (!$product instanceof Product) {
+            return redirect('/products')->with([
+                'product_not_found' => 'Product not found.',
+            ]);
+        }
+
+        return view('products.show', [
+            'product' => $product,
+        ]);
     }
 
     /**

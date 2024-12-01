@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return redirect('/products');
 });
-
-Route::resource('products', ProductController::class);
+Route::resource('products', ProductController::class)->except(['show']);
+Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 
 Route::get('/users/{username}', [UserController::class, 'show'])->name('users.show');

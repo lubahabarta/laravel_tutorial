@@ -12,10 +12,10 @@
 
     <section class="flex-1">
         {{-- <img src="{{ $product->image }}" alt="{{ $product->name }}" class="w-full aspect-square object-cover rounded"> --}}
-        <figure
+        <a href="{{route('products.show', $product->slug)}}"
             class="w-full aspect-square flex justify-center items-center bg-gray-300 dark:bg-gray-950 border border-slate-500 rounded">
             <p>IMG_PLACEHOLDER</p>
-        </figure>
+        </a>
         <h3 class="font-bold text-lg mt-4">{{ $product->name }}</h3>
         <p class="mt-2">{{ Str::words($product->description, 20) }}</p>
     </section>
@@ -39,3 +39,4 @@
     </section>
 
 </article>
+</a>

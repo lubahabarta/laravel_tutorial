@@ -21,6 +21,12 @@
 
         @if (session('product_creation_success'))
             <x-flash type="success" :message="session('product_creation_success')" />
+        @elseif(session('product_not_found'))
+            <x-flash type="error" :message="session('product_not_found')" />
+        @elseif(session('product_update_success'))
+            <x-flash type="success" :message="session('product_update_success')" />
+        @elseif (session('product_deleted'))
+            <x-flash type="success" :message="session('product_deleted')" />
         @endif
 
         @if ($products->isEmpty())

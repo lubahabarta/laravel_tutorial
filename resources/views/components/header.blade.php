@@ -25,6 +25,10 @@
                     </li>
                 @endauth
 
+                <li>
+                    <button type="button" id="toggle-theme">dark</button>
+                </li>
+
             </ul>
         </div>
 

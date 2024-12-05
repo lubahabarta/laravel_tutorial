@@ -2,12 +2,13 @@
 
     <main>
         <section>
-            <form action="{{ route('products.store') }}" method="post">
+            <form action="{{ route('products.update', $product) }}" method="post">
                 @csrf
+                @method('PUT')
 
                 <div class="flex flex-col">
                     <label for="name">product name</label>
-                    <input type="text" name="name" value="{{ old('name') }}"
+                    <input type="text" name="name" value="{{ $product->name }}"
                         class="border 
                             @if ($errors->has('name')) border-red-500
                             @else border-slate-700 @endif">
@@ -22,7 +23,7 @@
                         class="border 
                             @if ($errors->has('description')) border-red-500
                             @else border-slate-700 @endif">
-                    {{ old('description') }}
+                    {{ $product->description }}
                     </textarea>
                     @error('description')
                         <span class="text-red-500 text-xs">{{ $message }}</span>
@@ -31,7 +32,7 @@
 
                 <div class="flex flex-col">
                     <label for="price">price</label>
-                    <input type="number" name="price" value="{{ old('price') }}"
+                    <input type="number" name="price" value="{{ $product->price }}"
                         class="border 
                             @if ($errors->has('price')) border-red-500
                             @else border-slate-700 @endif">
@@ -42,7 +43,7 @@
 
                 <div class="flex flex-col">
                     <label for="count">count</label>
-                    <input type="number" name="count" value="{{ old('count') }}"
+                    <input type="number" name="count" value="{{ $product->count }}"
                         class="border 
                             @if ($errors->has('count')) border-red-500
                             @else border-slate-700 @endif">
@@ -53,7 +54,7 @@
 
                 <div class="flex flex-col">
                     <label for="image">image</label>
-                    <input type="text" name="image" value="{{ old('image') }}"
+                    <input type="text" name="image" value="{{ $product->image }}"
                         class="border 
                             @if ($errors->has('image')) border-red-500
                             @else border-slate-700 @endif">
@@ -64,7 +65,7 @@
 
                 <div class="flex flex-col">
                     <label for="slug">slug</label>
-                    <input type="text" name="slug" value="{{ old('slug') }}"
+                    <input type="text" name="slug" value="{{ $product->slug }}"
                         class="border 
                             @if ($errors->has('slug')) border-red-500
                             @else border-slate-700 @endif">
@@ -77,7 +78,7 @@
                     <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
                 @enderror
 
-                <button type="submit" class="">Add product</button>
+                <button type="submit" class="">Update product</button>
 
             </form>
         </section>

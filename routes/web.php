@@ -22,7 +22,11 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return redirect('/products');
 });
-Route::resource('products', ProductController::class)->except(['show']);
-Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 
+// PRODUCTS
+Route::resource('products', ProductController::class)->except(['show', 'edit']);
+Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{slug}/edit', [ProductController::class, 'edit'])->name('products.edit');
+
+// USERS
 Route::get('/users/{username}', [UserController::class, 'show'])->name('users.show');

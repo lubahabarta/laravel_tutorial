@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description'); // 65 535
             $table->unsignedInteger('price'); // 4 294 967 295
             $table->unsignedSmallInteger('count'); // 65 535
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->string('slug', 255)->unique();
             $table->timestamps();
         });

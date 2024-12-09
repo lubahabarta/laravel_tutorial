@@ -1,6 +1,7 @@
 @props(['type' => 'success', 'message' => ''])
 
 <aside
+    id="flash"
     class="
         rounded-lg px-4 py-2 mt-2
         @switch($type)

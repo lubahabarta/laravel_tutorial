@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -24,5 +25,16 @@ class UpdateProductRequest extends FormRequest
         return [
             //
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'price' => (int) $this->price * 100,
+            'slug' => Str::slug($this->slug),
+        ]);
     }
 }

@@ -10,6 +10,7 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller implements HasMiddleware
 {
@@ -51,7 +52,7 @@ class ProductController extends Controller implements HasMiddleware
             'description' => ['max:65535'],
             'price' => ['required', 'numeric', 'min:1', 'max:4294967295'],
             'count' => ['required', 'numeric', 'min:1', 'max:65535'],
-            'image' => ['required', 'url', 'max:65535'],
+            'image' => ['nullable', 'file', 'max:2000', 'mimes:png,jpg,jpeg,webp'],
             'slug' => ['required', 'unique:products', 'max:255'],
         ]);
 
@@ -60,6 +61,11 @@ class ProductController extends Controller implements HasMiddleware
             return redirect('/login')->with([
                 'session_timed_out' => 'Your session has timed out. Please log in again.',
             ]);
+        }
+
+        if ($request->hasFile('image')) {
+            $path = Storage::disk('public_images')->put('/products', $request->image);
+            $fields['image'] = $path;
         }
 
         $product = $user->products()->create($fields);
@@ -120,14 +126,13 @@ class ProductController extends Controller implements HasMiddleware
             'description' => ['max:65535'],
             'price' => ['required', 'numeric', 'min:1', 'max:4294967295'],
             'count' => ['required', 'numeric', 'min:1', 'max:65535'],
-            'image' => ['required', 'url', 'max:65535'],
             'slug' => ['required', 'unique:products,slug,' . $product->id, 'max:255'],
         ]);
 
         $product->update($fields);
 
         return redirect('/dashboard')->with([
-            'product_update_success' => 'Product updated successfully.'
+            'product_update_success' => 'Product updated successfully.',
         ]);
     }
 
@@ -141,7 +146,7 @@ class ProductController extends Controller implements HasMiddleware
         $product->delete();
 
         return back()->with([
-            'product_deleted' => 'Product deleted successfully.'
+            'product_deleted' => 'Product deleted successfully.',
         ]);
     }
 }

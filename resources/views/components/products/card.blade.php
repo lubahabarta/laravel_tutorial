@@ -35,12 +35,19 @@
     @endif
 
     <section class="flex-1">
-        {{-- <img src="{{ $product->image }}" alt="{{ $product->name }}" class="w-full aspect-square object-cover rounded"> --}}
         <a href="{{ route('products.show', $product->slug) }}"
-            class="w-full aspect-square flex justify-center items-center bg-gray-300 dark:bg-gray-950 border border-slate-500 rounded">
-            <p>IMG_PLACEHOLDER</p>
+            class="w-full aspect-square flex justify-center items-center bg-gray-300 dark:bg-gray-950 border border-slate-500 overflow-hidden rounded">
+            @if ($product->image)
+                <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}"
+                    class="w-full h-full object-cover">
+            @else
+                <p>IMG_PLACEHOLDER</p>
+            @endif
         </a>
-        <h3 class="font-bold text-lg mt-4">{{ $product->name }}</h3>
+        <a href="{{ route('products.show', $product->slug) }}" class="hover:underline">
+            <h3 class="font-bold text-lg mt-4">{{ $product->name }}</h3>
+        </a>
+
         <p class="mt-2">{{ Str::words($product->description, 20) }}</p>
     </section>
 

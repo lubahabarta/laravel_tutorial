@@ -2,7 +2,8 @@
 
     <main>
         <section>
-            <form action="{{ route('products.update', $product) }}" method="post">
+            <form action="{{ route('products.update', $product) }}" method="post"
+                class="flex flex-col items-stretch gap-2">
                 @csrf
                 @method('PUT')
 
@@ -32,7 +33,7 @@
 
                 <div class="flex flex-col">
                     <label for="price">price</label>
-                    <input type="number" name="price" value="{{ $product->price }}"
+                    <input type="number" name="price" value="{{ $product->price / 100 }}"
                         class="border 
                             @if ($errors->has('price')) border-red-500
                             @else border-slate-700 @endif">
@@ -52,16 +53,13 @@
                     @enderror
                 </div>
 
-                <div class="flex flex-col">
-                    <label for="image">image</label>
-                    <input type="text" name="image" value="{{ $product->image }}"
-                        class="border 
-                            @if ($errors->has('image')) border-red-500
-                            @else border-slate-700 @endif">
-                    @error('image')
-                        <span class="text-red-500 text-xs">{{ $message }}</span>
-                    @enderror
-                </div>
+                {{-- <input type="hidden" name="image" value="{{ $product->image }}"
+                    class="border 
+                        @if ($errors->has('image')) border-red-500
+                        @else border-slate-700 @endif">
+                @error('image')
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                @enderror --}}
 
                 <div class="flex flex-col">
                     <label for="slug">slug</label>
@@ -78,7 +76,7 @@
                     <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
                 @enderror
 
-                <button type="submit" class="">Update product</button>
+                <button type="submit" class=" self-start mt-4">Update product</button>
 
             </form>
         </section>

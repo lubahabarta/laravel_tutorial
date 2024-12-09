@@ -2,7 +2,7 @@
 
     <main>
         <section>
-            <form action="{{ route('products.store') }}" method="post">
+            <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data" class="flex flex-col gap-2">
                 @csrf
 
                 <div class="flex flex-col">
@@ -52,17 +52,6 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <label for="image">image</label>
-                    <input type="text" name="image" value="{{ old('image') }}"
-                        class="border 
-                            @if ($errors->has('image')) border-red-500
-                            @else border-slate-700 @endif">
-                    @error('image')
-                        <span class="text-red-500 text-xs">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="flex flex-col">
                     <label for="slug">slug</label>
                     <input type="text" name="slug" value="{{ old('slug') }}"
                         class="border 
@@ -73,11 +62,30 @@
                     @enderror
                 </div>
 
+                <div class="flex flex-col">
+
+                    <label for="image">image</label>
+                    <input type='file' name="image" accept="image/png, image/jpeg, image/webp" />
+                    @error('image')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
+
+                    {{-- <label for="image">image</label>
+                    <input type="text" name="image" value="{{ old('image') }}"
+                        class="border 
+                            @if ($errors->has('image')) border-red-500
+                            @else border-slate-700 @endif">
+                    @error('image')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror --}}
+
+                </div>
+
                 @error('product_creation_failed')
                     <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
                 @enderror
 
-                <button type="submit" class="">Add product</button>
+                <button type="submit" class="self-start mt-4">Add product</button>
 
             </form>
         </section>

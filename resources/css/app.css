@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+form {
+    input {
+        @apply dark:bg-gray-950;
+    }
+
+    textarea {
+        @apply dark:bg-gray-950;
+    }
+}

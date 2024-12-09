@@ -19,12 +19,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 });
 
-Route::get('/', function () {
-    return redirect('/products');
-});
-
 // PRODUCTS
-Route::resource('products', ProductController::class)->except(['show', 'edit']);
+Route::resource('products', ProductController::class)->except(['index', 'show', 'edit']);
+Route::get('/', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/products/{slug}/edit', [ProductController::class, 'edit'])->name('products.edit');
 

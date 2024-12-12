@@ -8,25 +8,8 @@
 
             <ul class="flex items-center gap-4">
 
-                @guest
-                    <li><a href="{{ route('login') }}">login</a></li>
-                    <li><a href="{{ route('register') }}">register</a></li>
-                @endguest
-
-                @auth
-                    <li><a href="{{ route('dashboard') }}">{{ auth()->user()->first_name }}
-                            {{ auth()->user()->last_name }}</a>
-                    <li>
-                    <li>
-                        <form action="{{ route('logout') }}" method="post">
-                            @csrf
-                            <button type="submit">logout</button>
-                        </form>
-                    </li>
-                @endauth
-
                 <li>
-                    <button type="button" id="toggle-theme">dark</button>
+                    <x-avatar />
                 </li>
 
             </ul>

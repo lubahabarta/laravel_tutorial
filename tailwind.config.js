@@ -18,6 +18,15 @@ export default {
             gridTemplateColumns: {
                 fluid: "repeat(auto-fit, minmax(20rem, 1fr))",
             },
+            animation: {
+                show: "show 200ms ease-in",
+            },
+            keyframes: {
+                show: {
+                    from: { opacity: "0" },
+                    to: { opacity: "1" },
+                },
+            },
         },
     },
     plugins: [],

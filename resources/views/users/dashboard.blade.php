@@ -13,6 +13,8 @@
             <x-flash type="success" :message="session('product_update_success')" />
         @elseif (session('product_deleted'))
             <x-flash type="success" :message="session('product_deleted')" />
+        @elseif (session('avatar_upload_success'))
+            <x-flash type="success" :message="session('avatar_upload_success')" />
         @endif
     </aside>
 

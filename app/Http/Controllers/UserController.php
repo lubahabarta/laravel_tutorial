@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DepositRequest;
@@ -18,7 +17,7 @@ class UserController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
-        if (!$user instanceof User) {
+        if (! $user instanceof User) {
             return redirect('login')->with([
                 'session_timed_out' => 'Your session has timed out. Please log in again.',
             ]);
@@ -39,14 +38,14 @@ class UserController extends Controller
      */
     public function show(String $username)
     {
-        if (!$username || empty($username)) {
+        if (! $username || empty($username)) {
             return back()->with([
                 'user_not_found' => 'User not found.',
             ]);
         }
 
         $user = User::where('username', $username)->first();
-        if (!$user instanceof User) {
+        if (! $user instanceof User) {
             return back()->with([
                 'user_not_found' => 'User not found.',
             ]);
@@ -59,7 +58,7 @@ class UserController extends Controller
         $userProducts = $user->products()->latest()->paginate(12);
 
         return view('users.show', [
-            'user' => $user,
+            'user'         => $user,
             'userProducts' => $userProducts,
         ]);
     }
@@ -71,7 +70,7 @@ class UserController extends Controller
         ]);
 
         $user = $request->user();
-        if (!$user instanceof User) {
+        if (! $user instanceof User) {
             return redirect('/login')->with([
                 'session_timed_out' => 'Your session has timed out. Please log in again.',
             ]);
@@ -82,18 +81,16 @@ class UserController extends Controller
         }
 
         if ($request->hasFile('avatar')) {
-            $path = Storage::disk('public_images')->put('/users', $request->avatar);
+            $path   = Storage::disk('public_images')->put('/users', $request->avatar);
             $result = $user->update(['avatar' => $path]);
         }
 
-        // TODO: display errors
-        if (!$result) {
+        if (! $result) {
             return back()->withError([
                 'avatar_upload_error' => 'Avatar upload failed. Please try it later.',
             ]);
         }
 
-        // TODO: display success message
         return redirect('/dashboard')->with([
             'avatar_upload_success' => 'Avatar uploaded successfully.',
         ]);
@@ -109,7 +106,7 @@ class UserController extends Controller
         ]);
 
         $user = $request->user();
-        if (!$user instanceof User) {
+        if (! $user instanceof User) {
             return redirect('/login')->with([
                 'session_timed_out' => 'Your session has timed out. Please log in again.',
             ]);
@@ -117,7 +114,7 @@ class UserController extends Controller
 
         $credit = $user->credit + $fields['amount'];
         $result = $user->update(['credit' => $credit]);
-        if (!$result) {
+        if (! $result) {
             return back()->withError([
                 'deposit_error' => 'Deposit failed. Please try it later.',
             ]);

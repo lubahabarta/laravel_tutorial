@@ -20,11 +20,16 @@ export default {
             },
             animation: {
                 show: "show 200ms ease-in",
+                flash: "flash 5s ease-out",
             },
             keyframes: {
                 show: {
                     from: { opacity: "0" },
                     to: { opacity: "1" },
+                },
+                flash: {
+                    "0%, 80%": { opacity: 1 },
+                    "100%": { opacity: 0 },
                 },
             },
         },

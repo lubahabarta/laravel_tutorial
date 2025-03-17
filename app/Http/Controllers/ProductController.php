@@ -27,8 +27,15 @@ class ProductController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        $products = Product::latest()->paginate(12);
+        $user = Auth::user();
+        if (!$user instanceof User) {
+            $products = Product::latest()->paginate(12);
+            return view('products.index', [
+                'products' => $products,
+            ]);
+        }
 
+        $products = Product::where('user_id', '!=', $user->id)->latest()->paginate(12);
         return view('products.index', [
             'products' => $products,
         ]);
@@ -56,7 +63,7 @@ class ProductController extends Controller implements HasMiddleware
             'slug' => ['required', 'unique:products', 'max:255'],
         ]);
 
-        $user = Auth::user();
+        $user = $request->user();
         if (!$user instanceof User) {
             return redirect('/login')->with([
                 'session_timed_out' => 'Your session has timed out. Please log in again.',
@@ -141,7 +148,7 @@ class ProductController extends Controller implements HasMiddleware
      */
     public function destroy(Product $product)
     {
-        // Gate::authorize('update', $product);
+        Gate::authorize('delete', $product);
 
         $product->delete();
 

@@ -1,9 +1,7 @@
 @props(['type' => 'success', 'message' => ''])
 
 <aside
-    id="flash"
-    class="
-        rounded-lg px-4 py-2 mt-2
+    class="relative -z-10 flash opacity-0 rounded-lg px-4 py-2 animate-flash
         @switch($type)
             @case('error')
                 bg-red-500 text-white
@@ -15,7 +13,7 @@
                 bg-blue-500 text-white
                 @break
             @default
-                bg-green-500 text-slate-500
+                bg-green-500 text-white
         @endswitch">
     <p>{{ $message }}</p>
 </aside>

@@ -3,8 +3,12 @@
     <section class="flex flex-col items-center sm:flex-row sm:items-start gap-8 pt-8">
 
         <div
-            class="w-1/2 sm:w-1/4 aspect-square flex justify-center items-center bg-gray-300 dark:bg-gray-950 border border-slate-500 rounded-full">
-            <p>IMG_PLACEHOLDER</p>
+            class="relative w-1/2 sm:w-1/4 aspect-square flex justify-center items-center bg-gray-300 dark:bg-gray-950 border border-slate-500 rounded-full overflow-hidden">
+            @if ($user->avatar)
+                <img src="{{ asset('images/' . $user->avatar) }}" alt="avatar" class="w-full h-full object-cover object-center" />
+            @else
+                <p>IMG_PLACEHOLDER</p>
+            @endif
         </div>
 
         <div class="flex-1">
@@ -18,10 +22,6 @@
     <section class="pt-12">
 
         <h2 class="font-bold text-3xl">User's products</h2>
-
-        @if (session('product_creation_success'))
-            <x-flash type="success" :message="session('product_creation_success')" />
-        @endif
 
         @if ($userProducts->isEmpty())
             <p class="mt-8">User has no products.</p>

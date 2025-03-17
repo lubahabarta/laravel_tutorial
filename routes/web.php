@@ -17,6 +17,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+
+    Route::view('/avatar', 'users.avatar')->name('avatar');
+    Route::post('/avatar', [UserController::class, 'avatar'])->name('avatar.update');
+
+    Route::view('/deposit', 'users.deposit')->name('deposit');
+    Route::post('/deposit', [UserController::class, 'deposit'])->name('deposit.add');
 });
 
 // PRODUCTS

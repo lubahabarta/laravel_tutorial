@@ -4,7 +4,11 @@
 
     @if ($type === 'default')
         <section class="flex flex-row items-center gap-2">
-            <figure class="w-10 h-10 border border-slate-500 rounded-full"></figure>
+            <figure class="w-10 h-10 border border-slate-500 rounded-full overflow-hidden">
+                @if ($product->user->avatar)
+                    <img src="{{ asset('images/' . $product->user->avatar) }}" alt="avatar" class="w-full h-full object-cover object-center" />
+                @endif
+            </figure>
             <a href="{{ route('users.show', $product->user->username) }}"
                 class="flex-1 text-slate-500">&#64;{{ $product->user->username }}</a>
         </section>
@@ -39,7 +43,7 @@
             class="w-full aspect-square flex justify-center items-center bg-gray-300 dark:bg-gray-950 border border-slate-500 overflow-hidden rounded">
             @if ($product->image)
                 <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}"
-                    class="w-full h-full object-cover">
+                    class="w-full h-full object-contain">
             @else
                 <p>IMG_PLACEHOLDER</p>
             @endif
@@ -58,7 +62,7 @@
         @if ($type === 'default')
             @auth
                 @if (auth()->user()->id !== $product->user_id)
-                    <button class="bg-green-500 text-slate-500 rounded-lg px-4 py-2 mt-2">
+                    <button type="button" class="bg-green-500 rounded-lg px-4 py-2 mt-2">
                         Add to cart
                     </button>
                 @else

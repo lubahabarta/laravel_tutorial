@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->text('avatar')->nullable();
+            $table->unsignedInteger('credit')->default('0'); // 4 294 967 295
             $table->rememberToken();
             $table->timestamps();
         });
